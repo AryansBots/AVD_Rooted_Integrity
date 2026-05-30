@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+  ============================================================================
+  PLACEHOLDER KEYBOX — replace with your own valid keybox before use.
+  ============================================================================
+
+  TrickyStore / TEESimulator reads /data/adb/tricky_store/keybox.xml and uses
+  the private keys + certificate chain in it to forge a hardware-attestation
+  chain that Play Integrity's DroidGuard accepts.
+
+  This file is intentionally NOT a real keybox. The real keybox.xml is
+  .gitignored so a live private key never lands in version control — a keybox
+  committed to a public repo is harvested and revoked by Google within hours,
+  after which MEETS_DEVICE_INTEGRITY stops verifying.
+
+  HOW TO USE YOUR OWN KEYBOX
+  --------------------------
+  1. Obtain a valid AOSP-format keybox (a TEE-class keybox yields
+     MEETS_DEVICE_INTEGRITY; StrongBox-class is needed for STRONG and is out
+     of reach on an emulator).
+  2. Save it as:  device/data_adb/tricky_store/keybox.xml
+     (that exact name is .gitignored — it will not be committed).
+  3. Run scripts/install-device-setup.sh, which pushes it to
+     /data/adb/tricky_store/keybox.xml on the running AVD (root:root).
+  4. Apply it with a clean COLD REBOOT:  adb reboot
+     DO NOT `killall keystore2 / keymint / TEESimulator` by hand to apply it.
+     A manual restart re-rolls TEESimulator's TEE check and flips it from
+     GENERATE mode (valid keybox chain) into PATCH mode (chain Google rejects),
+     which silently loses integrity. See docs/INTEGRITY_CHAIN.md "Layer 1b".
+
+  EXPECTED STRUCTURE (an AOSP keybox has one ecdsa Key and one rsa Key, each
+  with a 3-certificate chain ending at the Google attestation root):
+-->
+<AndroidAttestation>
+    <NumberOfKeyboxes>1</NumberOfKeyboxes>
+    <Keybox DeviceID="PLACEHOLDER">
+        <Key algorithm="ecdsa">
+            <PrivateKey format="pem">
+-----BEGIN EC PRIVATE KEY-----
+REPLACE_WITH_YOUR_EC_PRIVATE_KEY
+-----END EC PRIVATE KEY-----
+            </PrivateKey>
+            <CertificateChain>
+                <NumberOfCertificates>3</NumberOfCertificates>
+                <!-- leaf, intermediate, Google attestation root (PEM) -->
+            </CertificateChain>
+        </Key>
+        <Key algorithm="rsa">
+            <PrivateKey format="pem">
+-----BEGIN RSA PRIVATE KEY-----
+REPLACE_WITH_YOUR_RSA_PRIVATE_KEY
+-----END RSA PRIVATE KEY-----
+            </PrivateKey>
+            <CertificateChain>
+                <NumberOfCertificates>3</NumberOfCertificates>
+                <!-- leaf, intermediate, Google attestation root (PEM) -->
+            </CertificateChain>
+        </Key>
+    </Keybox>
+</AndroidAttestation>

@@ -1,0 +1,75 @@
+# ============================================================================
+# THE SINGLE SOURCE OF TRUTH for the spoofed device identity.
+#
+# PIF reads this to spoof Build.* for Play Services, AND 00-make-fakes.sh /
+# 01-avd-prop-spoof.sh derive EVERY other spoof from it (per-partition props,
+# the bind-mounted /vendor/build.prop, dt_compatible, security_patch.txt). So
+# editing the fields below is the ONLY place you change the device identity —
+# everything else follows automatically on the next cold reboot.
+#
+# Default: Pixel 9 (tokay) CANARY — the validated profile.
+#
+# To use a DIFFERENT Pixel (or match a different Android version), replace the
+# Build Fields below with a current, valid profile for that device. Good sources:
+#   - github.com/chiteroman/PlayIntegrityFix (pif.json releases)
+#   - the PIF module's own autopif (run it ONCE on a throwaway device to harvest
+#     a profile, copy the values here, then NEVER run autopif on the real AVD —
+#     it drifts the profile on every boot). See docs/REPRODUCTION.md §7.
+# Keep all fields internally consistent (FINGERPRINT must contain BRAND/PRODUCT/
+# DEVICE/RELEASE/ID/INCREMENTAL). SECURITY_PATCH must be a real patch date.
+# ============================================================================
+# Build Fields - Pixel 9 (tokay) for STRONG INTEGRITY
+MANUFACTURER=Google
+MODEL=Pixel 9
+FINGERPRINT=google/tokay_beta/tokay:CANARY/ZP11.260417.009/15372612:user/release-keys
+BRAND=google
+PRODUCT=tokay_beta
+DEVICE=tokay
+RELEASE=CANARY
+ID=ZP11.260417.009
+INCREMENTAL=15372612
+TYPE=user
+TAGS=release-keys
+SECURITY_PATCH=2026-05-05
+DEVICE_INITIAL_SDK_INT=32
+
+# System Properties - comprehensive override
+*.build.id=ZP11.260417.009
+*.security_patch=2026-05-05
+*api_level=32
+*.build.fingerprint=google/tokay_beta/tokay:CANARY/ZP11.260417.009/15372612:user/release-keys
+*.product.brand=google
+*.product.manufacturer=Google
+*.product.model=Pixel 9
+*.product.name=tokay_beta
+*.product.device=tokay
+*.product.board=tokay
+*.board.platform=tokay
+*.hardware=tokay
+*.boot.hardware=tokay
+*.boot.hardware.platform=tokay
+*.product.cpu.abi=arm64-v8a
+*.build.type=user
+*.build.tags=release-keys
+*.build.user=android-build
+*.build.host=abfarm
+*.build.flavor=tokay_beta-user
+ro.boot.qemu=0
+ro.kernel.qemu=0
+ro.kernel.qemu.gles=0
+ro.boot.virtio_mmio=0
+ro.boot.flash.locked=1
+ro.boot.veritymode=enforcing
+ro.boot.vbmeta.device_state=locked
+ro.boot.verifiedbootstate=green
+ro.debuggable=0
+ro.secure=1
+
+# Advanced Settings - tuned for STRONG INTEGRITY
+spoofBuild=1
+spoofProps=1
+spoofProvider=1
+spoofSignature=0
+spoofVendingFinger=1
+spoofVendingSdk=0
+verboseLogs=0

@@ -1,0 +1,11 @@
+# this contains paths you want to redirect with
+# open redirect at boot-completed.sh or service.sh
+# example format
+# 0 = Execute on boot-completed.sh
+# 1 = Execute on service.sh
+# <original_path> <redirected_path> <0 or 1>
+# /system/bin/service /data/adb/susfs4ksu/service_redirected 0
+/proc/cpuinfo /data/adb/avd-fake/cpuinfo 1
+/proc/version /data/adb/avd-fake/version 1
+/proc/modules /data/adb/avd-fake/modules 1
+/proc/cmdline /data/adb/susfs4ksu/spoofed_cmdline 1
