@@ -15,9 +15,11 @@
 
   HOW TO USE YOUR OWN KEYBOX
   --------------------------
-  1. Obtain a valid AOSP-format keybox (a TEE-class keybox yields
-     MEETS_DEVICE_INTEGRITY; StrongBox-class is needed for STRONG and is out
-     of reach on an emulator).
+  1. Obtain a valid AOSP-format keybox. TEESimulator forges a complete
+     attestation chain from it, rooted in Google's attestation root, so this
+     setup reaches MEETS_STRONG_INTEGRITY on a pure emulator — no StrongBox
+     hardware required. Bringing your own valid keybox is the only thing you
+     must supply.
   2. Save it as:  device/data_adb/tricky_store/keybox.xml
      (that exact name is .gitignored — it will not be committed).
   3. Run scripts/install-device-setup.sh, which pushes it to

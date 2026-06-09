@@ -12,15 +12,17 @@
 
 🌐 **[Live site &amp; overview →](https://tanishmeh.github.io/AVD_Rooted_Integrity/)**
 
-<img src="media/play-integrity-verdict.png" alt="Play Integrity verdict — MEETS_DEVICE_INTEGRITY on a rooted Pixel 9 Pro XL AVD" width="300" />
+<img src="media/play-integrity-verdict.png" alt="Play Integrity verdict — MEETS_STRONG_INTEGRITY on a rooted Pixel 9 Pro XL AVD" width="300" />
 
 </div>
 
 ---
 
 A reproducible recipe for a **rooted Pixel-class Android emulator (AVD) that
-passes Google Play Integrity** (`MEETS_DEVICE_INTEGRITY`, Play Protect
-certified) and presents as real Pixel hardware to apps.
+passes Google Play Integrity all the way to `MEETS_STRONG_INTEGRITY`** (Play
+Protect certified) and presents as real Pixel hardware to apps. No StrongBox
+hardware required — TEESimulator forges the full attestation chain from your
+own keybox, so the verdict reaches **strong** integrity, not just device.
 
 It combines a custom kernel (KernelSU-Next + SUSFS + anti-emulator source
 patches) with an on-device `/data/adb/` setup (prop spoofs, attestation-chain
@@ -95,14 +97,16 @@ TrickyStore/TEESimulator forges the hardware attestation chain from
 **not** in this repo — a keybox committed to a public repo gets harvested and
 revoked by Google within hours, after which integrity stops verifying. Use
 [`keybox.xml.example`](device/data_adb/tricky_store/keybox.xml.example) as the
-format reference and supply your own. A TEE-class keybox reaches
-`MEETS_DEVICE_INTEGRITY`; `MEETS_STRONG_INTEGRITY` needs StrongBox and is
-unreachable on an emulator.
+format reference and **supply your own** — this is the one thing you must
+provide. Because TEESimulator forges a complete, internally-consistent chain
+rooted in Google's attestation root from that keybox, this setup reaches
+**`MEETS_STRONG_INTEGRITY`** on a pure emulator — no StrongBox hardware needed.
 
 ## Scope
 
-- ✅ Custom kernel, prop/`/proc` spoofing, attestation forging, root hiding,
-  `virt_wifi` networking — everything needed for the PI device-integrity verdict.
+- ✅ **Full `MEETS_STRONG_INTEGRITY`** (no StrongBox — just your keybox +
+  TEESimulator): custom kernel, prop/`/proc` spoofing, attestation forging,
+  root hiding, `virt_wifi` networking — everything the strong verdict needs.
 - ❌ **No APKs / no sensor-name spoofing** — the Goldfish sensor vendor strings
   remain (a known gap; not required for the verdict).
 - ❌ **No carrier/eSIM provisioning** — out of scope.

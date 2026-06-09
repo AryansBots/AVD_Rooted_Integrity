@@ -33,11 +33,13 @@ These need a different surface than the kernel:
 - **Sensor vendor names** ("Goldfish 3-axis Accelerometer | The Android Open
   Source Project"). The sensor HAL lives in `vendor.img`. This is a known,
   unaddressed gap in this repo — it is not required for the Play Integrity
-  verdict (`MEETS_DEVICE_INTEGRITY`), only for evading deeper gms.unstable
-  hardware-shape heuristics.
-- **Strong integrity.** Requires a StrongBox-class keybox. A TEE-class keybox
-  makes `MEETS_STRONG_INTEGRITY` structurally unreachable. The ceiling is
-  `MEETS_DEVICE_INTEGRITY`.
+  verdict, only for evading deeper gms.unstable hardware-shape heuristics.
+- **The attestation verdict itself.** `MEETS_STRONG_INTEGRITY` does *not* come
+  from the kernel — it comes from TEESimulator forging a complete keybox-rooted
+  attestation chain in GENERATE mode (see `../docs/INTEGRITY_CHAIN.md`). The
+  kernel's job is only to keep emulator tells out of `/proc` so the rest of the
+  chain holds; with that plus your own keybox, the verdict reaches **strong**
+  integrity — no StrongBox hardware needed.
 
 ## Build it
 

@@ -87,7 +87,7 @@
       <li><strong>macOS arm64</strong> (Apple Silicon) or Linux x86_64 host.</li>
       <li><strong>Docker</strong> (for the kernel build).</li>
       <li><strong>Android SDK</strong>: <code>emulator</code> + the <code>system-images;android-36;google_apis_playstore;arm64-v8a</code> image + <code>adb</code> on PATH.</li>
-      <li><strong>A valid keybox</strong> — this is the one thing you must supply yourself. Save it as <code>device/data_adb/tricky_store/keybox.xml</code> (that path is <code>.gitignored</code>; see <a href="device/data_adb/tricky_store/keybox.xml.example">keybox.xml.example</a> for the format). Do <strong>not</strong> commit a real keybox — a public one is harvested and revoked by Google within hours.</li>
+      <li><strong>A valid keybox</strong> — this is the one thing you must supply yourself. Save it as <code>device/data_adb/tricky_store/keybox.xml</code> (that path is <code>.gitignored</code>; see <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/device/data_adb/tricky_store/keybox.xml.example" target="_blank" rel="noopener">keybox.xml.example ↗</a> for the format). Do <strong>not</strong> commit a real keybox — a public one is harvested and revoked by Google within hours.</li>
     </ul>
     <div class="callout warnx">
       <span class="ci">🔑</span>
@@ -112,7 +112,7 @@
     -w /work kbuild ./scripts/build-all.sh
 <span class="c-com"># → out/Image.gz</span></code></pre>
     </div>
-    <p>See <a href="kernel-build/README.md">kernel-build/README.md</a> for pinned versions and troubleshooting. The build adds KernelSU-Next, SUSFS, a module-vermagic bypass, and source-level <code>/proc/modules</code> + <code>/proc/cpuinfo</code> + kernel-banner spoofs.</p>
+    <p>See <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/kernel-build/README.md" target="_blank" rel="noopener">kernel-build/README.md ↗</a> for pinned versions and troubleshooting. The build adds KernelSU-Next, SUSFS, a module-vermagic bypass, and source-level <code>/proc/modules</code> + <code>/proc/cpuinfo</code> + kernel-banner spoofs.</p>
 
     <h2 id="firstboot">3 · First boot with the custom kernel</h2>
     <div class="codeblock">
@@ -127,7 +127,7 @@
     </div>
 
     <h2 id="rootstack">4 · Install the root stack</h2>
-    <p>Per <a href="device/modules.md">device/modules.md</a> (exact validated URLs are in that file):</p>
+    <p>Per <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/device/modules.md" target="_blank" rel="noopener">device/modules.md ↗</a> (exact validated URLs are in that file):</p>
     <ol>
       <li>Install the <strong>KernelSU-Next manager</strong> APK → launch once → confirm <code>adb shell su -c id</code> returns <code>uid=0</code>.</li>
       <li>Install these modules, then reboot:
@@ -237,7 +237,7 @@ keystore2: ... "TEESimulator_AttestationCheck" ... Error::Km(CANNOT_ATTEST_IDS) 
 
     <div class="callout good" style="margin-top:36px">
       <span class="ci">📄</span>
-      <p>This page mirrors <a href="docs/REPRODUCTION.md">docs/REPRODUCTION.md</a>, which also carries the full §9 post-mortem (every wrong turn and the diff that cracked it). For the layer-by-layer reasoning, see <a href="docs/INTEGRITY_CHAIN.md">docs/INTEGRITY_CHAIN.md</a>.</p>
+      <p>This page mirrors <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/REPRODUCTION.md" target="_blank" rel="noopener">docs/REPRODUCTION.md ↗</a>, which also carries the full §9 post-mortem (every wrong turn and the diff that cracked it). For the layer-by-layer reasoning, see <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/INTEGRITY_CHAIN.md" target="_blank" rel="noopener">docs/INTEGRITY_CHAIN.md ↗</a>.</p>
     </div>
 
   </article>
@@ -254,7 +254,7 @@ keystore2: ... "TEESimulator_AttestationCheck" ... Error::Km(CANNOT_ATTEST_IDS) 
       <div class="foot-links">
         <a href="index.html">Overview</a>
         <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity">GitHub</a>
-        <a href="docs/INTEGRITY_CHAIN.md">The chain</a>
+        <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/INTEGRITY_CHAIN.md" target="_blank" rel="noopener">The chain</a>
       </div>
     </div>
   </div>

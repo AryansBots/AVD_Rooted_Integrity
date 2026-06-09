@@ -101,7 +101,7 @@
   <div class="wrap">
     <div class="eyebrow">The integrity chain</div>
     <h2>Five layers, end to end</h2>
-    <p class="section-lede">Every layer is documented with the exact failure mode it prevents and the script that enforces it. The full reasoning lives in <a href="docs/INTEGRITY_CHAIN.md">INTEGRITY_CHAIN.md</a>.</p>
+    <p class="section-lede">Every layer is documented with the exact failure mode it prevents and the script that enforces it. The full reasoning lives in <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/INTEGRITY_CHAIN.md" target="_blank" rel="noopener">INTEGRITY_CHAIN.md ↗</a>.</p>
     <div class="chain">
       <div class="layer">
         <div class="num">01</div>
@@ -193,7 +193,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
       <div>
         <h3>You must bring your own keybox</h3>
-        <p>The whole attestation chain is forged from <code>device/data_adb/tricky_store/keybox.xml</code> — and that file is deliberately <strong>not</strong> in this repo (it's <code>.gitignored</code>). The repo ships only <a href="device/data_adb/tricky_store/keybox.xml.example">keybox.xml.example</a> as a format reference. <strong>Supply your own valid keybox</strong> and drop it at that exact path before running the install script. Keep it private: a keybox committed to a public repo gets harvested and revoked by Google within hours, after which the verdict stops verifying.</p>
+        <p>The whole attestation chain is forged from <code>device/data_adb/tricky_store/keybox.xml</code> — and that file is deliberately <strong>not</strong> in this repo (it's <code>.gitignored</code>). The repo ships only <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/device/data_adb/tricky_store/keybox.xml.example" target="_blank" rel="noopener">keybox.xml.example ↗</a> as a format reference. <strong>Supply your own valid keybox</strong> and drop it at that exact path before running the install script. Keep it private: a keybox committed to a public repo gets harvested and revoked by Google within hours, after which the verdict stops verifying.</p>
       </div>
     </div>
   </div>
@@ -239,7 +239,7 @@
       <div class="rm-row"><span class="path">device/pif/</span><span class="desc">PlayIntegrityFork profile — Pixel 9 / <code>tokay</code>, tuned for strong integrity, pinned (no autopif).</span></div>
       <div class="rm-row"><span class="path">device/avd-config/</span><span class="desc">Host-side <code>config.ini</code> + <code>advancedFeatures.ini</code> templates (the critical Wi-Fi flags).</span></div>
       <div class="rm-row"><span class="path">scripts/</span><span class="desc"><code>start_avd.sh</code>, <code>install-device-setup.sh</code>, and a read-only <code>verify-integrity.sh</code> health check.</span></div>
-      <div class="rm-row"><span class="path">docs/</span><span class="desc"><a href="reproduction.html">REPRODUCTION</a> — step by step. <a href="docs/INTEGRITY_CHAIN.md">INTEGRITY_CHAIN.md</a> — why each layer matters.</span></div>
+      <div class="rm-row"><span class="path">docs/</span><span class="desc"><a href="reproduction.html">REPRODUCTION</a> — step by step. <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/INTEGRITY_CHAIN.md" target="_blank" rel="noopener">INTEGRITY_CHAIN.md ↗</a> — why each layer matters.</span></div>
     </div>
   </div>
 </section>
@@ -255,7 +255,7 @@
       <div class="foot-links">
         <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity">GitHub</a>
         <a href="reproduction.html">Guide</a>
-        <a href="docs/INTEGRITY_CHAIN.md">The chain</a>
+        <a href="https://github.com/tanishmeh/AVD_Rooted_Integrity/blob/master/docs/INTEGRITY_CHAIN.md" target="_blank" rel="noopener">The chain</a>
       </div>
     </div>
     <div class="credits">

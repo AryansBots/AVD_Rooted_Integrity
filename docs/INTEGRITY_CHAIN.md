@@ -1,9 +1,12 @@
 # Why this passes Play Integrity — the chain end to end
 
-Goal: a rooted Pixel-class AVD that returns **`MEETS_DEVICE_INTEGRITY`** with a
-non-empty Labels list and shows **Play Protect certified**. Strong integrity is
-out of reach (it needs a StrongBox-class keybox; a TEE-class keybox can only
-reach device integrity).
+Goal: a rooted Pixel-class AVD that returns **`MEETS_STRONG_INTEGRITY`** with a
+full Labels list (`MEETS_BASIC_INTEGRITY`, `MEETS_DEVICE_INTEGRITY`,
+`MEETS_STRONG_INTEGRITY`) and shows **Play Protect certified**. No StrongBox
+hardware is required: TEESimulator forges a complete attestation chain from your
+own keybox, rooted in Google's attestation root, so the verdict reaches **strong**
+integrity on a pure emulator — provided the forge stays in GENERATE mode and no
+emulator tell leaks (the rest of this document).
 
 The verdict is produced by DroidGuard inside `com.google.android.gms.unstable`.
 It fails if **any** of these layers leaks: a forged attestation chain that
