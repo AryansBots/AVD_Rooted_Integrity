@@ -1,0 +1,4 @@
+docker run \
+    -v "$PWD":/work \
+    -v kbuild-sources:/work/sources \
+    -w /work kbuild ./scripts/build-all.sh
